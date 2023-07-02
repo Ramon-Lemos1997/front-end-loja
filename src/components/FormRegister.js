@@ -7,7 +7,7 @@ export default function FormRegister(props) {
   const email = useSelector((state) => state.email);
   const password = useSelector((state) => state.password);
 
-  const dispatch = useDispatch();a
+  const dispatch = useDispatch();
 
   return (
     <div className="container">
@@ -15,7 +15,7 @@ export default function FormRegister(props) {
         <input
           type="text"
           className="input"
-          placeholder="Nome"
+          placeholder="Nome"//oi
           value={name}
           onChange={(e) => dispatch(setName(e.target.value))}
         />
