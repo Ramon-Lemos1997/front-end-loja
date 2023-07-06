@@ -1,9 +1,3 @@
-export const resetForm = () => {
-  return {
-    type: "RESET_FORM",
-  };
-};
-
 export const setName = (name) => {
   return {
     type: "SET_NAME",

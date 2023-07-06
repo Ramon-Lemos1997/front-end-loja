@@ -6,19 +6,19 @@ const initialLoginState = {
 const loginReducer = (state = initialLoginState, action) => {
 switch (action.type) {
     case "SET_LOGIN_EMAIL":
-    return {
-        ...state,
-        email: action.payload,
-    };
+        return {
+            ...state,
+            email: action.payload,
+        };
     case "SET_LOGIN_PASSWORD":
-    return {
-        ...state,
-        password: action.payload,
-    };
+        return {
+            ...state,
+            password: action.payload,
+        };
     case "RESET_LOGIN_FORM":
-    return initialLoginState;
+        return initialLoginState;
     default:
-    return state;
+        return state;
     }
 };
   

@@ -8,26 +8,31 @@ export default function FormLogin(props) {
   const dispatch = useDispatch();
 
   return (
-    <div className="container">
-      <form className="form" onSubmit={props.handleFormLogin}>
-        <input
-          type="email"
-          className="input"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => dispatch(setLoginEmail(e.target.value))}
-        />
-        <input
-          type="password"
-          className="input"
-          placeholder="Senha"
-          value={password}
-          onChange={(e) => dispatch(setLoginPassword(e.target.value))}
-        />
-        <button type="submit" className="button">
+    <div className="form-container">
+      <form className="form-index" onSubmit={props.handleFormLogin}>
+        <div className="input-container">
+          <input
+            type="email"
+            className="input"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => dispatch(setLoginEmail(e.target.value))}
+          />
+        </div>
+        <div className="input-container">
+          <input
+            type="password"
+            className="input"
+            placeholder="Senha"
+            value={password}
+            onChange={(e) => dispatch(setLoginPassword(e.target.value))}
+          />
+        </div>
+        <button className="btn" type="submit">
           Login
         </button>
       </form>
     </div>
   );
 }
+

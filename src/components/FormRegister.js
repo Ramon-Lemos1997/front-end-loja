@@ -10,30 +10,36 @@ export default function FormRegister(props) {
   const dispatch = useDispatch();
 
   return (
-    <div className="container">
-      <form className="form" onSubmit={props.handleFormLogin}>
-        <input
-          type="text"
-          className="input"
-          placeholder="Nome"//oi
-          value={name}
-          onChange={(e) => dispatch(setName(e.target.value))}
-        />
-        <input
-          type="email"
-          className="input"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => dispatch(setEmail(e.target.value))}
-        />
-        <input
-          type="password"
-          className="input"
-          placeholder="Senha"
-          value={password}
-          onChange={(e) => dispatch(setPassword(e.target.value))}
-        />
-        <button type="submit" className="button">
+    <div className="form-container">
+      <form className="form-index" onSubmit={props.handleFormSubmit}>
+        <div className="input-container">
+          <input
+            type="text"
+            className="input"
+            placeholder="Nome"
+            value= {name}
+            onChange={(e) => dispatch (setName(e.target.value))}
+          />
+        </div>
+        <div className= "input-container">
+          <input
+            type= "email"
+            className= "input"
+            placeholder= "Email"
+            value={email}
+            onChange={(e) => dispatch(setEmail(e.target.value))}
+          />
+        </div>
+        <div className= "input-container">
+          <input
+            type="password"
+            className="input"
+            placeholder="Senha"
+            value= {password}
+            onChange={(e) => dispatch(setPassword(e.target.value))}
+          />
+        </div>
+        <button className="btn-register" type= "submit" >
           Registrar-se
         </button>
       </form>

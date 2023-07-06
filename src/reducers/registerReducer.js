@@ -1,10 +1,10 @@
-const initialState = {
+const initialRegisterState = {
   name: '',
   email: '',
   password: ''
 };
 
-const registerReducer = (state = initialState, action) => {
+const registerReducer = (state = initialRegisterState, action) => {
   switch (action.type) {
     case "SET_NAME":
       return {
@@ -21,21 +21,9 @@ const registerReducer = (state = initialState, action) => {
         ...state,
         password: action.payload
       };
-    case "SET_REGISTRATION_SUCCESS":
-      return {
-        ...state,
-        registrationSuccess: action.payload
-      };
-    case "RESET_FORM":
-      return {
-        ...state,
-        name: "",
-        email: "",
-        password: ""
-      };
     default:
       return state;
   }
-};
+}
 export default registerReducer;
 
