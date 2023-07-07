@@ -131,3 +131,9 @@ form {
 .logout-button:hover {
   background-color: rgb(167, 20, 20);
 }
+
+.error-message-container{
+  position: absolute;
+  padding-top: 20%;
+  margin-left: 70%;
+}

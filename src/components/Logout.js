@@ -10,9 +10,9 @@ const LogoutButton = (props) => {
 
   const handleLogout = async () => {
     try {
-      const email = Cookies.get("loggedInUser");
+      const id = Cookies.get("loggedInUser");
       const response = await axios.post("http://localhost:3000/user/logout", {
-        email,
+        id,
       });
 
       if (response) {

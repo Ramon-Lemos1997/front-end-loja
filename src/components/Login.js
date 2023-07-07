@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { resetLoginForm } from "../actions/loginAction";
-import Cookies from "js-cookie"; // Importe a biblioteca js-cookie
-
+import Cookies from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import FormLogin from "./FormLogin";
 import "../register.css";
@@ -11,6 +10,7 @@ const LoginForm = (props) => {
   const email = useSelector((state) => state.login.email);
   const password = useSelector((state) => state.login.password);
   const dispatch = useDispatch();
+  const [loginError, setLoginError] = useState(null);
 
   const handleFormLogin = async (e) => {
     e.preventDefault();
@@ -29,7 +29,6 @@ const LoginForm = (props) => {
         
         Cookies.set("loggedInUser", response.data, { expires: expirationDate, secure: true });
         
-
         dispatch(resetLoginForm());
         props.onLoginSuccess();
       } else {
@@ -37,10 +36,24 @@ const LoginForm = (props) => {
       }
     } catch (error) {
       console.error(error);
+      if (error.response && error.response.data) {
+        setLoginError(error.response.data);
+      } else {
+        setLoginError("Erro inesperado");
+      }
     }
   };
 
-  return <FormLogin handleFormLogin={handleFormLogin} />;
+  return (
+    <>
+      {loginError ? (
+        <div className="error-message-container">
+          Erro no registro: {loginError}
+        </div>
+      ) : null}
+      <FormLogin handleFormLogin={handleFormLogin} />
+    </>
+  );
 };
 
 export default LoginForm;
