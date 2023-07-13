@@ -21,6 +21,8 @@ const registerReducer = (state = initialRegisterState, action) => {
         ...state,
         password: action.payload
       };
+    case "RESET_REGISTER":
+      return initialRegisterState; // redefine os valores para os valores iniciais
     default:
       return state;
   }

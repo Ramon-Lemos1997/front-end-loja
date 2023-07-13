@@ -10,7 +10,6 @@ const RegistrationForm = () => {
   const email = useSelector((state) => state.register.email);
   const password = useSelector((state) => state.register.password);
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
-  const [registrationError, setRegistrationError] = useState(null);
 
   const navigate = useNavigate();
 
@@ -35,11 +34,7 @@ const RegistrationForm = () => {
       }
     } catch (error) {
       console.error(error);
-      if (error.response && error.response.data) {
-        setRegistrationError(error.response.data);
-      } else {
-        setRegistrationError("Erro inesperado");
-      }
+      console.log("Erro inesperado");
     }
   };
 
@@ -58,14 +53,7 @@ const RegistrationForm = () => {
           Registrado com sucesso!
         </div>
       ) : (
-        <>
-          {registrationError && (
-            <div className="error-message-container">
-              Erro no registro: {registrationError}
-            </div>
-          )}
-          <FormRegister handleFormSubmit={handleFormSubmit} />
-        </>
+        <FormRegister handleFormSubmit={handleFormSubmit} />
       )}
     </>
   );

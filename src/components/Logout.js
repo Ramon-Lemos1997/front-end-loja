@@ -1,4 +1,4 @@
-import React from "react";
+//import React from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
@@ -10,30 +10,27 @@ const LogoutButton = (props) => {
 
   const handleLogout = async () => {
     try {
-      const id = Cookies.get("loggedInUser");
-      const response = await axios.post("http://localhost:3000/user/logout", {
-        id,
-      });
-
+       const response = await axios.post(
+        "http://localhost:3000/user/logout",{}, 
+      );
+  
       if (response) {
-        console.log(response.data);
         Cookies.remove("loggedInUser");
         dispatch(resetLoginForm());
         props.onLogoutSuccess();
-        console.log("logout")
-        window.location.reload();
       } else {
-        console.log("Erro ao enviar");
+        console.log("Erro ao efetuar o logout");
       }
     } catch (error) {
       console.error(error);
     }
-  };
-
+  };  
+  handleLogout()
   return (
-    <div  >
+    LogoutButton
+    /*<div  >
       <button className="logout-button" onClick={handleLogout}>click to exit</button>
-    </div>
+    </div>*/
   );
   
 

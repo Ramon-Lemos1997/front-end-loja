@@ -23,9 +23,9 @@ const LoginForm = (props) => {
 
       if (response) {
         console.log("logado");
-        
+       
         const expirationDate = new Date();
-        expirationDate.setTime(expirationDate.getTime() + 0.5 * 60 * 1000); // Adiciona 2 minutos
+        expirationDate.setTime(expirationDate.getTime() + 5 * 60 * 1000); // Adiciona 2 minutos
         
         Cookies.set("loggedInUser", response.data, { expires: expirationDate, secure: true });
         

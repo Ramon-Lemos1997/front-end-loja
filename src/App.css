@@ -1,11 +1,13 @@
 
 .container{
+  padding-bottom: 20px;
+  border-bottom: 10px solid rgb(122, 106, 106);
   height: 20%;
 }
 
 .link-no-decoration {
   text-decoration: none;
-  color:#a38080
+  color:#2e2424
 }
 
 button {
@@ -23,10 +25,46 @@ button {
   box-shadow: 6px 6px 12px #c5c5c5,
              -6px -6px 12px #ffffff;
 }
+.a{
+  background-color: #b8b5a5;
+}
+.a:hover{
+  background-color: rgb(117, 103, 103);
+}
 
-button:hover {
-  border: 1px solid rgb(58, 15, 15);
-  background-color: #3f3b1b;
+.b{
+  background-color: rgb(36, 160, 25);
+}
+.b:hover{
+  background-color: rgb(33, 223, 74);
+}
+
+.c{
+  background-color: rgb(158, 160, 25);
+}
+.c:hover{
+  background-color: rgb(175, 223, 4);
+}
+
+.d{
+  background-color: #aa1818;
+}
+.d:hover{
+  background-color: rgb(238, 13, 13);
+}
+
+.e{
+  background-color: rgb(202, 216, 200); 
+}
+.e:hover{
+  background-color: rgb(240, 240, 240);
+}
+
+.f{
+  background-color: rgb(58, 147, 189); 
+}
+.f:hover{
+  background-color: rgb(1, 160, 252);
 }
 
 button:active {

@@ -19,4 +19,8 @@ export const setPassword = (password) => {
   };
 };
 
-
+export const resetRegister = () => {
+  return {
+    type: "RESET_REGISTER"
+  };
+};

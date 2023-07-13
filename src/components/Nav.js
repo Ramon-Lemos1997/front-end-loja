@@ -1,19 +1,46 @@
 import React from "react";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Nav(props) {
   return (
     <nav className="container">
-      
-      <button >
-        <Link to={"/logout"} className="link-no-decoration">Logout</Link> 
-      </button>
-      <button >
-        <Link  to={"/login"} className="link-no-decoration">Login</Link> 
-      </button>
-      <button >
-        <Link  to={"/register"} className="link-no-decoration">Registrar-se</Link> 
-      </button>
+      {props.isLoggedIn ? (
+        <>
+          <button className="d">
+            <Link to="/logout" className="link-no-decoration">
+              Logout
+            </Link>
+          </button>
+          <button className="e">
+            <Link to="/home" className="link-no-decoration">
+              Home
+            </Link>
+          </button>
+          <button className="f">
+            <Link to="/auth" className="link-no-decoration">
+              verificados
+            </Link>
+          </button>
+        </>
+      ) : (
+        <>
+          <button className="a">
+            <Link to={"/"} className="link-no-decoration">
+              Página inicial
+            </Link>
+          </button>
+          <button className="b">
+            <Link to={"/login"} className="link-no-decoration">
+              Login
+            </Link>
+          </button>
+          <button className="c">
+            <Link to={"/register"} className="link-no-decoration">
+              Registrar-se
+            </Link>
+          </button>
+        </>
+      )}
     </nav>
   );
 }
