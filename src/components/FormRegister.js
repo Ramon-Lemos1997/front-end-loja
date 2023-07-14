@@ -1,13 +1,19 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setEmail, setName, setPassword } from "../actions/registerAction";
+import { setEmail, setName, setPassword, resetRegister } from "../actions/registerAction";
+
 
 export default function FormRegister(props) {
   const name = useSelector((state) => state.name);
   const email = useSelector((state) => state.email);
   const password = useSelector((state) => state.password);
-
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!props.registrationSuccess) {
+      dispatch(resetRegister());
+    }
+  }, [props.registrationSuccess, dispatch]);
 
   return (
     <div className="form-container">

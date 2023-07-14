@@ -4,6 +4,12 @@
   border-bottom: 10px solid rgb(122, 106, 106);
   height: 20%;
 }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
 
 .link-no-decoration {
   text-decoration: none;
@@ -92,8 +98,6 @@ button:active {
 }
 
 
-
-
 .form-container {
   display: flex;
   justify-content: center;
@@ -126,7 +130,7 @@ form {
   width: 100%;
   padding: 10px;
   font-size: 16px;
-  border-radius: 20px; /* Valor alto para deixar a borda mais oval */
+  border-radius: 20px; 
 }
 
 .btn {
@@ -171,7 +175,12 @@ form {
 }
 
 .error-message-container{
+  font-family: Arial, Helvetica, sans-serif;
+  padding-bottom: 20px;
+  border-bottom: 10px solid rgb(122, 106, 106);
+  border-bottom: 10px solid rgb(122, 106, 106);
+  font-size: 20px;
   position: absolute;
-  padding-top: 20%;
-  margin-left: 70%;
+  padding-top: 15%;
+  margin-left: 65%;
 }

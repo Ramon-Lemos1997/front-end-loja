@@ -17,6 +17,7 @@ const store = createStore(rootReducer);
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
+  
 
   useEffect(() => {
     const checkLoggedInUser = () => {
@@ -50,11 +51,11 @@ const App = () => {
         <Nav isLoggedIn={loggedIn}/> 
         <Routes>
           
-          <Route exact path="/login" element={loggedIn ? <Home /> : <Login onLoginSuccess={handleLoginSuccess} />}/>
+          <Route exact path="/login" element={loggedIn ? <Navigate to="/"/> : <Login onLoginSuccess={handleLoginSuccess} />}/>
           <Route exact path="/logout" element= {loggedIn ? <Logout onLogoutSuccess={handleLogoutSuccess} /> : <Navigate to="/" />}/>
           <Route exact path="/home" element={loggedIn ? <Home /> : <Navigate to="/login" />}/>
           <Route exact path="/auth" element={loggedIn ? <Auth /> : <Navigate to="/login" />}/>
-          <Route exact path="/register" element={<Register />}/>
+          <Route exact path="/register" element={!loggedIn ? <Register /> : <Navigate to="/" />}/>
           
           
         </Routes>

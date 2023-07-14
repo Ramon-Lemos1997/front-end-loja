@@ -4,13 +4,16 @@ import { resetLoginForm } from "../actions/loginAction";
 import Cookies from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import FormLogin from "./FormLogin";
-import "../register.css";
+import { useNavigate } from "react-router-dom";
+import '../register.css'
+
 
 const LoginForm = (props) => {
   const email = useSelector((state) => state.login.email);
   const password = useSelector((state) => state.login.password);
   const dispatch = useDispatch();
   const [loginError, setLoginError] = useState(null);
+  const navigate = useNavigate();
 
   const handleFormLogin = async (e) => {
     e.preventDefault();
@@ -25,12 +28,13 @@ const LoginForm = (props) => {
         console.log("logado");
        
         const expirationDate = new Date();
-        expirationDate.setTime(expirationDate.getTime() + 5 * 60 * 1000); // Adiciona 2 minutos
+        expirationDate.setTime(expirationDate.getTime() + 24 * 60 * 60 * 1000); 
         
         Cookies.set("loggedInUser", response.data, { expires: expirationDate, secure: true });
         
         dispatch(resetLoginForm());
         props.onLoginSuccess();
+        navigate("/home");
       } else {
         console.log("falha no login");
       }
@@ -48,7 +52,7 @@ const LoginForm = (props) => {
     <>
       {loginError ? (
         <div className="error-message-container">
-          Erro no registro: {loginError}
+          {loginError}
         </div>
       ) : null}
       <FormLogin handleFormLogin={handleFormLogin} />
