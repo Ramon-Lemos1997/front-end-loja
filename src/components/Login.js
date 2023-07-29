@@ -5,8 +5,7 @@ import Cookies from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import FormLogin from "./FormLogin";
 import { useNavigate } from "react-router-dom";
-import '../register.css'
-
+import '../register.css';
 
 const LoginForm = (props) => {
   const email = useSelector((state) => state.login.email);
@@ -17,21 +16,23 @@ const LoginForm = (props) => {
 
   const handleFormLogin = async (e) => {
     e.preventDefault();
-
+    if (!email && !password) {
+      return null;
+    }
     try {
       const response = await axios.post("http://localhost:3000/user/login", {
         email,
         password,
       });
 
-      if (response) {
+      if (response.status === 200) {
         console.log("logado");
-       
+
         const expirationDate = new Date();
-        expirationDate.setTime(expirationDate.getTime() + 24 * 60 * 60 * 1000); 
-        
+        expirationDate.setTime(expirationDate.getTime() + 24 * 60 * 60 * 1000);
+
         Cookies.set("loggedInUser", response.data, { expires: expirationDate, secure: true });
-        
+        Cookies.remove("User");
         dispatch(resetLoginForm());
         props.onLoginSuccess();
         navigate("/home");
@@ -55,7 +56,9 @@ const LoginForm = (props) => {
           {loginError}
         </div>
       ) : null}
+   
       <FormLogin handleFormLogin={handleFormLogin} />
+      
     </>
   );
 };

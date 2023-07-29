@@ -14,7 +14,7 @@ const LogoutButton = (props) => {
         "http://localhost:3000/user/logout",{}, 
       );
   
-      if (response) {
+      if (response.status === 200) {
         Cookies.remove("loggedInUser");
         dispatch(resetLoginForm());
         props.onLogoutSuccess();

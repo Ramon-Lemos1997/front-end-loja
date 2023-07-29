@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { Link } from "react-router-dom";
 
 const AuthComponent = () => {
   const [authenticated, setAuthenticated] = useState(false);
@@ -10,15 +11,16 @@ const AuthComponent = () => {
 
     if (token) {
       try {
-        const response = await axios.get("http://localhost:3000/admin", {
+        const response = await axios.get("http://localhost:3000/admin/auth", {
           headers: {
             Authorization: token 
           }
         });
 
-        if (response) {
+        if (response.status === 200) {
           setAuthenticated(true);
           console.log("Usuário autenticado");
+          console.log(response);
         } else {
           console.log("Falha na autenticação");
         }
@@ -35,12 +37,19 @@ checkAuthentication();
 
   return (
     <>
-      {authenticated ? (
-        <div>Conteúdo autenticado</div>
-      ) : (
-        <div>Você não possui permissão de administrador</div>
-      )}
-    </>
+    {authenticated ? (
+      <div className="center">
+        <div className="vaiparaolado">Conteúdo autenticado</div>
+        <button className="e">
+          <Link to="/newItem" className="link-no-decoration">
+            Adicionar um novo item
+          </Link>
+        </button>
+      </div>
+    ) : (
+      <div>Você não possui permissão de administrador</div>
+    )}
+  </>
   );
 };
 

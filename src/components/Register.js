@@ -29,7 +29,7 @@ const RegistrationForm = () => {
         }
       );
 
-      if (response) {
+      if (response.status === 200) {
         console.log("registrado");
         setRegistrationSuccess(true);
       } else {
@@ -49,8 +49,8 @@ const RegistrationForm = () => {
   useEffect(() => {
     if (registrationSuccess) {
       setTimeout(() => {
-        navigate("/");
-      }, 5000);
+        navigate("/login");
+      }, 2000);
     }
   }, [registrationSuccess, navigate]);
 

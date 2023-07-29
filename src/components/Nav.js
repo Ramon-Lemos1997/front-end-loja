@@ -34,13 +34,9 @@ export default function Nav(props) {
               Login
             </Link>
           </button>
-          <button className="c">
-            <Link to={"/register"} className="link-no-decoration">
-              Registrar-se
-            </Link>
-          </button>
+       
         </>
       )}
     </nav>
   );
-}
+};

@@ -26,6 +26,6 @@ const registerReducer = (state = initialRegisterState, action) => {
     default:
       return state;
   }
-}
+};
 export default registerReducer;
 
