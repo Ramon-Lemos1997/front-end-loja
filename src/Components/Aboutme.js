@@ -21,6 +21,9 @@ const AboutMe = () => {
         com muitos casos, apenas não está no ar por falta de recursos financeiros no momento, mas será um prazer colocar no ar para sua exibição, aguardo o contato.
       </p>
       <p>
+        Outra opção é o GitHub, disponibilizei todo projeto nele, somente tem que adaptar com a suas credenciais da Stripe e token pessoais, <Link to="https://github.com/Ramon-Lemos1997">GitHub</Link>.
+      </p>
+      <p>
         Neste projeto fiz integração com a API de pagamento da STRIPE, lidei com cenários complexos de autenticações, segurança, transmissão de dados em tempo reais entre muitos outros casos.
       </p>
       <p>
