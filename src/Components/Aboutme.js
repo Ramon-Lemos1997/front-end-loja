@@ -25,7 +25,7 @@ const AboutMe = () => {
         Se você quiser entrar em contato comigo para discutir projetos, colaborações ou apenas trocar ideias, fique à vontade para
         me enviar um e-mail <Link to="mailto:johnnyramon2011@gmail.com"><img className="emailicon" src="https://i.ibb.co/qkq8QDg/undraw-Opened-re-i38e.png" alt="Ícone de e-mail" /></Link>
         ou me chamar pelo telefone <Link to="https://api.whatsapp.com/send?phone=5535999482018"><img className="whatsapp-link" src="https://i.ibb.co/qJqft5g/image3.png" alt="WhatsApp" /></Link>.
-      </p>as
+      </p>
       
     </div>
   );
