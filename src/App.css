@@ -17,16 +17,15 @@
 }
 
 button {
+  background-color: #fcfcfc00;
   cursor: pointer;
   text-decoration: none;
   color: #cc1111;
-  height: 50px;
-  width: 300px;
+  
   margin-left: 30px;
   margin-top: 30px;
   font-size: 18px;
   border-radius: 0.5em;
-  background: #2a2b38;
   border: 1px solid #e8e8e8;
   transition: all .3s;
   box-shadow: 6px 6px 12px #c5c5c5,
@@ -344,7 +343,7 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 5%;
 }
 
-.linhas{
+/*.linhas{
   padding: 10px 20px;
   width: 20%;
   background-color: rgb(39, 43, 38);
@@ -353,4 +352,103 @@ input[type="number"]::-webkit-outer-spin-button {
   border: 5px;
   border-radius: 20px;
   cursor: pointer;
+}*/
+/* Estilo para cada item da lista */
+.linhas {
+  /* Adicione flexbox para alinhar os elementos horizontalmente */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px ;
+  background-color: rgb(59, 47, 43);
+  margin-bottom: 2%;
+  margin-right: 3%;
+  color: #f8f8f8;
+  border: 5px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* Estilo para o botão dentro de cada item da lista */
+.linhas button {
+  background-color: rgb(243, 245, 243);
+  color: #000000;
+  border: none;
+
+  cursor: pointer;
+  /* Remova a largura e a margem esquerda para que o botão acompanhe o conteúdo */
+  width: auto;
+  margin-left: 0;
+}
+
+/* Estilo para o botão quando passar o mouse (hover) */
+.linhas button:hover {
+  background-color: rgb(65, 58, 58);
+}
+
+.relative{
+  margin-left: 3%;
+  
+  
+}
+
+.buttons-container {
+  display: flex; /* Para os botões ficarem em linha */
+  gap: 10px; /* Espaçamento entre os botões */
+  
+}
+
+/* styles.css */
+
+.no-items-message {
+  text-align: center;
+  margin-top: 20%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
+
+}
+
+/* styles.css */
+
+.FINALIZAR {
+  background-color: transparent;
+  border: none;
+  color: rgb(21, 109, 25);
+
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+}
+
+.FINALIZAR:hover {
+  border-bottom: 2px solid black;
+}
+
+.err-message{
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  margin-top: 2%;
+  font-size: 20px;
+  
+}
+
+.thank-you-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f7e9e9;
+  text-align: center;
+}
+
+.thank-you-heading {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.thank-you-message {
+  font-size: 1.5rem;
+  color: #666;
 }

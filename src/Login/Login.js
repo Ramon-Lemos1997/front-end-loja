@@ -3,7 +3,7 @@ import axios from "axios";
 import { resetLoginForm } from "../actions/loginAction";
 import Cookies from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
-import FormLogin from "./FormLogin";
+import FormLogin from "../Login/FormLogin";
 import { useNavigate } from "react-router-dom";
 import '../register.css';
 
@@ -17,7 +17,7 @@ const LoginForm = (props) => {
   const handleFormLogin = async (e) => {
     e.preventDefault();
     if (!email && !password) {
-      return null;
+      return;
     }
     try {
       const response = await axios.post("http://localhost:3000/user/login", {
@@ -26,21 +26,20 @@ const LoginForm = (props) => {
       });
 
       if (response.status === 200) {
-        console.log("logado");
-
         const expirationDate = new Date();
-        expirationDate.setTime(expirationDate.getTime() + 24 * 60 * 60 * 1000);
-
-        Cookies.set("loggedInUser", response.data, { expires: expirationDate, secure: true });
-        Cookies.remove("User");
+        expirationDate.setTime(expirationDate.getTime() + 25 * 60 * 60 * 1000); // um dia de permissão;
+        
+        Cookies.remove("Code");
+        Cookies.set("loggedInUser", response.data, { expires: expirationDate, secure: true, sameSite:"Strict" });
+        
         dispatch(resetLoginForm());
         props.onLoginSuccess();
-        navigate("/home");
+        navigate("/store");
       } else {
-        console.log("falha no login");
+        //console.log("falha no login");
       }
     } catch (error) {
-      console.error(error);
+      //console.error(error);
       if (error.response && error.response.data) {
         setLoginError(error.response.data);
       } else {

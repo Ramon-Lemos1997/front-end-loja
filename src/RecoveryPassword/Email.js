@@ -3,7 +3,7 @@ import axios from "axios";
 import "../register.css";
 import { useNavigate } from "react-router-dom";
 
-const RecoveryForm = (props) => {
+const RecoveryForm = () => {
   const [email, setEmail] = useState("");
   const [recoveryError, setRecoveryError] = useState(null);
   const [recoverySuccess, setRecoverySuccess] = useState(false);
@@ -11,7 +11,9 @@ const RecoveryForm = (props) => {
 
   const handleFormRecovery = async (e) => {
     e.preventDefault();
-
+    if(!email){
+      return;
+    }
     try {
       const response = await axios.post(
         "http://localhost:3000/user/recovery",
@@ -23,10 +25,10 @@ const RecoveryForm = (props) => {
       if (response.status === 200) {
         setRecoverySuccess(true);
       } else {
-        console.log("Falha ao se comunicar com o email fornecido.");
+        //console.log("Falha ao se comunicar com o email fornecido.");
       }
     } catch (error) {
-      console.error(error);
+      //console.error(error);
       if (error.response && error.response.data) {
         setRecoveryError(error.response.data);
       } else {
@@ -56,23 +58,9 @@ const RecoveryForm = (props) => {
           )}
           <form onSubmit={handleFormRecovery}>
             <div className="input-container">
-              <input
-                type="email"
-                className="input"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
+              <input type="email" className="input" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
             </div>
-
-            <button
-              type="button"
-              className="btn-register"
-              onClick={handleFormRecovery}
-            >
-              Enviar código de recuperação para seu Email.
-            </button>
+            <button type="button" className="btn-register" onClick={handleFormRecovery}> Enviar código de recuperação para seu Email </button>
           </form>
         </div>
       )}

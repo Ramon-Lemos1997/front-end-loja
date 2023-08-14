@@ -30,13 +30,12 @@ const RegistrationForm = () => {
       );
 
       if (response.status === 200) {
-        console.log("registrado");
         setRegistrationSuccess(true);
       } else {
-        console.log("Erro inesperado");
+        //console.log("Erro inesperado");
       }
     } catch (error) {
-      console.error(error);
+      //console.error(error);
       if (error.response && error.response.data) {
         setErrorMessage(error.response.data);
       } else {

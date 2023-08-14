@@ -1,78 +1,91 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import { reset } from "../actions/newItemAction";
-import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import io from "socket.io-client";
-import NewItemForm from "./NewItemForm";
+import { useNavigate } from "react-router-dom";
+import EditItemsForm from "./FormEdit";
 
-const NewItems = () => {
+
+const EditItems = () => {
+  const navigate = useNavigate();
   const category = useSelector((state) => state.new.category);
   const price = useSelector((state) => state.new.price);
   const stockQuantity = useSelector((state) => state.new.quantity);
   const description = useSelector((state) => state.new.description);
   const [send, setSend] = useState(false);
-  const [error, setError] = useState(null); 
+  const [error, setError] = useState(null);
   const dispatch = useDispatch();
-
-
+  const location = useLocation();
+  const _itemId = location?.state.itemId 
+  Cookies.set("_id", _itemId, { secure: true, sameSite:"Strict" });
+  
   const handleNewItem = async (e) => {
     e.preventDefault();
     if (!category && !price && !description && !stockQuantity) {
       return;
     }
     const token = Cookies.get("loggedInUser");
-  
+    const id = Cookies.get("_id");
+    //console.log(token)
+    
     if (token) {
       try {
-        const response = await axios.post(
-          "http://localhost:3000/admin/newItem",
-          {
+        const response = await axios.put(
+          "http://localhost:3000/admin/editItem",
+          { 
             category,
             price,
             stockQuantity,
             description,
+
           },
           {
             headers: {
               Authorization: token,
+              id: id,
             },
           }
         );
-  
+
         if (response.status === 200) {
+          Cookies.remove("_id");
           setSend(true);
           setError(null);
-          //console.log("Item adicionado com sucesso");
+          //console.log("Item editado com sucesso");
           const socket = io.connect("http://localhost:3000");
           socket.emit("getItems");
           dispatch(reset());
-  
+
           setTimeout(() => {
             socket.disconnect();
             //console.log("Socket desconectado");
           }, 1000);
-        
+
         } else {
-          //console.log("Falha ao adicionar o item");
+          //console.log("Falha ao editar o item");
         }
       } catch (error) {
-        console.error(error);
+        //console.error(error);
         if (error.response && error.response.data) {
-          setError(error.response.data); 
+          setError(error.response.data);
         } else {
-          setError("Erro inesperado"); 
+          setError("Erro inesperado");
         }
       }
-    };
+    }
   };
-  
-  const handleReloadForm = () => {
-    setSend(false); 
-    dispatch(reset()); 
-  };
+  useEffect(() => {
+    if (send) {
+      setTimeout(() => {
+        navigate("/auth"); 
+      }, 2000);
+    }
+  }, [send, navigate]);
 
+  
   return (
     <>
       {error ? (
@@ -83,23 +96,15 @@ const NewItems = () => {
 
       {send ? (
         <div className="sucess-message-container">
-          <div className="item">Item cadastrado com sucesso!</div>
-          <button className="newform" onClick={handleReloadForm}>
-            Cadastrar novo item
-          </button>
-          <button className="e">
-            <Link to="/auth" className="link-no-decoration">
-              Voltar
-            </Link>
-            </button>
+          <div className="item">Item editado com sucesso!</div>
         </div>
       ) : (
         <div className="form-container">
-          <NewItemForm onSubmit={handleNewItem} />
+          <EditItemsForm onSubmit={handleNewItem} />
         </div>
       )}
     </>
   );
 };
 
-export default NewItems;
+export default EditItems;

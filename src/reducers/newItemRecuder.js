@@ -1,6 +1,7 @@
 const initialState = {
     category: "",
     price: "",
+    quantity: "",
     description: ""
 };
 
@@ -15,6 +16,11 @@ switch (action.type) {
         return {
             ...state,
             price: action.payload,
+        };
+    case "SET_QUANTITY":
+        return {
+            ...state,
+            quantity: action.payload,
         };
     case "SET_DESCRIPTION":
         return {

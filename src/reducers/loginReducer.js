@@ -2,7 +2,7 @@ const initialLoginState = {
     email: "",
     password: "",
 };
-
+//uso o ... para manter o estado anteriores, exemplo se atualizar o email e não o password, ai atualizo somente o email sem perder o password;
 const loginReducer = (state = initialLoginState, action) => {
 switch (action.type) {
     case "SET_LOGIN_EMAIL":

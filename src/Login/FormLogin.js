@@ -1,11 +1,9 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setLoginEmail, setLoginPassword } from "../actions/loginAction";
 import { Link } from "react-router-dom";
 
 export default function FormLogin(props) {
-  const email = useSelector((state) => state.login.email);
-  const password = useSelector((state) => state.login.password);
   const dispatch = useDispatch();
 
   return (
@@ -16,7 +14,6 @@ export default function FormLogin(props) {
             type="email"
             className="input"
             placeholder="Email"
-            value={email}
             onChange={(e) => dispatch(setLoginEmail(e.target.value))}
           />
         </div>
@@ -25,7 +22,6 @@ export default function FormLogin(props) {
             type="password"
             className="input"
             placeholder="Senha"
-            value={password}
             onChange={(e) => dispatch(setLoginPassword(e.target.value))}
           />
         </div>
@@ -36,7 +32,7 @@ export default function FormLogin(props) {
           <p>Não possui uma conta? <Link className="c" to={"/register"} >
                 Registra-se
               </Link></p>
-          <p> <Link className="g" to={"/recovery"} >
+          <p> <Link className="g" to={"/email"} >
             Esqueceu sua senha?
           </Link></p>
       </div>

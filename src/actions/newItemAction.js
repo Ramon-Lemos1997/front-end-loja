@@ -12,6 +12,13 @@ export const setPrice = (price) => {
   };
 };
 
+export const setQuantity = (quantity) => {
+  return {
+    type: "SET_QUANTITY",
+    payload: quantity,
+  };
+};
+
 export const setDescription = (description) => {
   return {
     type: "SET_DESCRIPTION",

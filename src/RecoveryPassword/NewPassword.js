@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 import "../register.css";
 import { useNavigate } from "react-router-dom";
 
-const NewPasswordForm = (props) => {
+const NewPasswordForm = () => {
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState(null);
   const [passwordSuccess, setPasswordSuccess] = useState(false);
@@ -12,7 +12,10 @@ const NewPasswordForm = (props) => {
 
   const handlePassword = async (e) => {
     e.preventDefault();
-    const token = Cookies.get("User");
+    const token = Cookies.get("Code");
+    if(!password){
+      return;
+    }
     const newPassword = password;
     try {
       const response = await axios.put(
@@ -27,13 +30,11 @@ const NewPasswordForm = (props) => {
 
       if (response.status === 200) {
         setPasswordSuccess(true);
-        console.log(response);
-        console.log("Senha redefinida.");
       } else {
-        console.log("Falha ao redefinir senha.");
+        //console.log("Falha ao redefinir senha.");
       }
     } catch (error) {
-      console.error(error);
+      //console.error(error);
       if (error.response && error.response.data) {
         setPasswordError(error.response.data);
       } else {
@@ -64,23 +65,9 @@ const NewPasswordForm = (props) => {
           <div className="form-container">
             <form onSubmit={handlePassword}>
               <div className="input-container">
-                <input
-                  type="password"
-                  className="input"
-                  placeholder="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
+                <input type="password" className="input" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
               </div>
-
-              <button
-                type="button"
-                className="btn-register"
-                onClick={handlePassword}
-              >
-                Redefinir senha
-              </button>
+              <button type="button" className="btn-register" onClick={handlePassword}> Redefinir senha </button>
             </form>
           </div>
         </>

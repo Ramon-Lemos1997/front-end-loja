@@ -2,14 +2,18 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import io from "socket.io-client";
+import handleDeleteItem from "./handleDeleteItem";
+import { useNavigate } from "react-router-dom";
 
 
-const Home = () => {
+const CartAuth = () => {
   const [items, setItems] = useState([]);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchItems = async () => {
+    
       const token = Cookies.get("loggedInUser");
       if (token) {
         try {
@@ -22,12 +26,11 @@ const Home = () => {
           if (response.status === 200) {
             setItems(response.data); 
             setError(null);
-            console.log("Itens obtidos com sucesso");
           } else {
-            console.log("Falha ao obter itens");
+            //console.log("Falha ao obter itens");
           }
         } catch (error) {
-          console.error(error);
+         // console.error(error);
           if (error.response && error.response.data) {
             setError(error.response.data); 
           } else {
@@ -36,19 +39,22 @@ const Home = () => {
         }
       }
     };
+    
     const socket = io.connect("http://localhost:3000");
-
     socket.emit("getItems");
     socket.on("allItems", (allItems) => {
        setItems(allItems);
-       console.log(allItems);
     });
+    
     fetchItems();
     return () => {
       socket.disconnect();
     };
   }, []);
-
+  const handleEditItem = (itemId) => {
+    navigate('/edit', { state: { itemId } });
+  };
+  
 
 
   return (
@@ -59,7 +65,7 @@ const Home = () => {
 
       {items.length > 0 ? (
         <div>
-          <h2>Lista de Itens:</h2>
+          <h2 className="relative">Lista de Itens:</h2>
           <ul>
             {items.map((item) => (
               <li className="linhas" key={item._id}>
@@ -71,6 +77,11 @@ const Home = () => {
                 </div>
                 <div>
                   <strong>Descrição:</strong> {item.description}
+                </div>
+                <div className="buttons-container">
+                    <button className="relative" onClick={() => handleDeleteItem(item._id)}>Excluir</button>
+                    <button className="relative" onClick={() => handleEditItem(item._id)}>Editar</button>
+                    
                 </div>
               </li>
             ))}
@@ -84,4 +95,4 @@ const Home = () => {
 
 
 
-export default Home;
+export default CartAuth;

@@ -2,31 +2,37 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Nav(props) {
+
   return (
     <nav className="container">
       {props.isLoggedIn ? (
         <>
+          <button className="a">
+            <Link to={"/index"} className="link-no-decoration">
+              Sobre mim
+            </Link>
+          </button>
           <button className="d">
             <Link to="/logout" className="link-no-decoration">
               Logout
             </Link>
           </button>
           <button className="e">
-            <Link to="/home" className="link-no-decoration">
-              Home
+            <Link to="/store" className="link-no-decoration">
+              Store
             </Link>
           </button>
           <button className="f">
             <Link to="/auth" className="link-no-decoration">
-              verificados
+              Admin's
             </Link>
           </button>
         </>
       ) : (
         <>
           <button className="a">
-            <Link to={"/"} className="link-no-decoration">
-              Página inicial
+            <Link to={"/index"} className="link-no-decoration">
+              Sobre mim
             </Link>
           </button>
           <button className="b">

@@ -4,7 +4,7 @@ import "../register.css";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
-const CodeForm = (props) => {
+const CodeForm = () => {
   const [code, setCode] = useState("");
   const [codeError, setCodeError] = useState(null);
   const [codeSuccess, setCodeSuccess] = useState(false);
@@ -12,6 +12,9 @@ const CodeForm = (props) => {
 
   const handleCodeRecovery = async (e) => {
     e.preventDefault();
+    if(!code){
+      return;
+    }
     const recoveryCode = code;
     try {
       const response = await axios.post(
@@ -22,13 +25,13 @@ const CodeForm = (props) => {
       );
 
       if (response.status === 200) {
-        Cookies.set("User", response.data, { secure: true });
+        Cookies.set("User", response.data, { secure: true, sameSite: "Strict" });
         setCodeSuccess(true);
       } else {
-        console.log("Falha ao enviar o código de recuperação.");
+        //console.log("Falha ao enviar o código de recuperação.");
       }
     } catch (error) {
-      console.error(error);
+      //console.error(error);
       if (error.response && error.response.data) {
         setCodeError(error.response.data);
       } else {
@@ -43,7 +46,7 @@ const CodeForm = (props) => {
         navigate("/newPass");
       }, 2000);
     }
-  }, [codeSuccess, navigate]);
+  }, [codeSuccess, navigate]); //quando um destes estado mudar, o componente é montado novamente;
 
   return (
     <>
@@ -59,23 +62,9 @@ const CodeForm = (props) => {
           <div className="form-container">
             <form onSubmit={handleCodeRecovery}>
               <div className="input-container">
-                <input
-                  type="code"
-                  className="input"
-                  placeholder="code"
-                  value={code}
-                  onChange={(e) => setCode(e.target.value)}
-                  required
-                />
+                <input type="code" className="input" placeholder="code" value={code} onChange={(e) => setCode(e.target.value)} required />
               </div>
-
-              <button
-                type="button"
-                className="btn-register"
-                onClick={handleCodeRecovery}
-              >
-                Enviar código
-              </button>
+              <button type="button" className="btn-register" onClick={handleCodeRecovery}> Verificar código </button>
             </form>
           </div>
         </>
