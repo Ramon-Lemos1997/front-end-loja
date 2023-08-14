@@ -25,7 +25,7 @@ import AboutMe from "./Components/Aboutme";
 
 
 
-//crio o store com os reducers
+//crio o store com os reducer
 const store = createStore(rootReducer);
 
 const App = () => {
