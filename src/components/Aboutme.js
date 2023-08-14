@@ -15,6 +15,12 @@ const AboutMe = () => {
         Atualmente estou a procura de uma vaga, sou Full Stack.
       </p>
       <p>
+        Neste projeto hospedei somente o front-end, mas se caso quiser testar todas funcionalidades entre em contato, pois uso meu localhost como servidor no momento, o projeto está totalmente funcional onde 
+        o usuário adiciona seu item's no carrinho, tem opção de retirar item do carrinho, após clicar em finalizar compra é redirecionado para a API da Stripe onde fiz a integração, após a Stripe me sinalizar
+        o pagamento optei por debitar os item's após o pagamento, se o usuário for admin poderá cadastar items na loja, excluir item, implementei todas funcionalidades em tempo real para uma melhor UX, lidando 
+        com muitos casos, apenas não está no ar por falta de recursos financeiros no momento, mas será um prazer colocar no ar para sua exibição, aguardo o contato.
+      </p>
+      <p>
         Neste projeto fiz integração com a API de pagamento da STRIPE, lidei com cenários complexos de autenticações, segurança, transmissão de dados em tempo reais entre muitos outros casos.
       </p>
       <p>
