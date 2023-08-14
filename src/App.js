@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { createStore } from "redux";
 import rootReducer from "./reducers/rootReducer";
 import Login from "./Login/Login";
-import Nav from "./Components/Nav";
+import { Nav } from "./Components/Nav";
 import "./App.css";
 import CartUser from "./CartUser/CartUser";
 import Cookies from "js-cookie";
